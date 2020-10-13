@@ -1,0 +1,16 @@
+{
+  "demos": [
+    {
+      "id": "default",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_0aje28d739k064ec7592j635kd95l_304x417.png"
+      ]
+    },
+    {
+      "id": "custom",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_74a5ji5k75137ge8542ffk9djfg60_300x429.png"
+      ]
+    }
+  ]
+}

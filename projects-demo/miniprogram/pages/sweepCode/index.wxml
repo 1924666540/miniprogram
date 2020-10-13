@@ -1,0 +1,4 @@
+<!--pages/sweepCode/index.wxml-->
+<view class="scanCode">
+<button bindtap="toScanCode">我要扫码</button>
+</view>

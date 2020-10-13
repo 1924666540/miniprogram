@@ -1,0 +1,21 @@
+{
+  "name": "@minui/wxc-dialog",
+  "version": "1.0.10",
+  "description": "MinUI 小程序组件 - 对话框",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meili/minui/tree/master/packages/wxc-dialog"
+  },
+  "author": "Min Team",
+  "license": "MIT",
+  "dependencies": {
+    "@minui/wxc-popup": "1.0.11"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "minConfig": {
+    "component": true
+  }
+}

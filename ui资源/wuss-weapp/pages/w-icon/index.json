@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Icon 图标",
+  "usingComponents": {
+    "w-icon": "/dist/w-icon/index",
+    "w-pane": "/dist/w-pane/index"
+  }
+}

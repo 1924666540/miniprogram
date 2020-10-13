@@ -1,0 +1,37 @@
+<w-pane title="Radio" desc="单选框" />
+
+
+<w-pane desc="Default" />
+
+<w-cell-group>
+  <w-radio options="{{ dataItems }}" bindonChange="handleonChange" />
+</w-cell-group>
+
+
+
+<w-pane desc="DefaultValue" />
+
+<w-cell-group>
+  <w-radio defaultValue="huawei" options="{{ dataItems }}" bindonChange="handleonChange" />
+</w-cell-group>
+
+
+<w-pane desc="W-Model" />
+
+<w-cell-group>
+  <w-radio w-model="{{ radioModel }}" options="{{ dataItems }}" bindonChange="handleonChange" />
+</w-cell-group>
+
+<w-button type="info" data-value="iphone" bind:onClick="handleChange">change 苹果</w-button>
+<w-button type="info" data-value="sanxing" bind:onClick="handleChange">change 三星</w-button>
+<w-button type="info" data-value="huawei" bind:onClick="handleChange">change 华为</w-button>
+<w-button type="info" data-value="oppo" bind:onClick="handleChange">change oppo音乐手机</w-button>
+
+
+
+
+<w-pane desc="Use ArrayKeys" />
+
+<w-cell-group>
+  <w-radio defaultValue="天使轮" options="{{ dataItems2 }}" bindonChange="handleonChange" />
+</w-cell-group>

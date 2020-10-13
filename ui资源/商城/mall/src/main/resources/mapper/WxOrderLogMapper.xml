@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.wx.mapper.WxOrderLogMapper">
+
+    <!--订单日志-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.order.OrderLog">
+        INSERT INTO t_order_log(order_no,action,ip_address,create_date,order_id)
+        VALUES (#{orderNo},#{action},#{ipAddress},NOW(),#{orderId})
+    </insert>
+
+    <select id="findOrderLog" resultType="com.scoprion.mall.domain.order.OrderLog">
+        SELECT
+        id,
+        good_no,
+        seller_no,
+        type,
+        ip_address,
+        create_date,
+        description,
+        order_id
+        FROM t_wx_mall_order_log WHERE order_id=#{orderId}
+    </select>
+
+</mapper>

@@ -1,0 +1,120 @@
+<w-pane title="Popup" desc="弹出层" />
+
+<w-pane desc="Position" />
+
+<w-button type="info" bind:onClick="handleClick1">Top</w-button>
+<w-popup
+ visible="{{ popup1 }}"
+ position="top"
+ height="250px"
+ bind:onClose="handleClose"
+>
+	<scroll-view scroll-y class="scroll-view-x">
+		<view
+		 class=""
+		 wx:for="{{50}}"
+		 wx:key="index"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			{{ index }}
+		</view>
+	</scroll-view>
+</w-popup>
+<w-button type="info" bind:onClick="handleClick2">Bottom</w-button>
+<w-popup
+ visible="{{ popup2 }}"
+ position="bottom"
+ height="250px"
+ bind:onClose="handleClose"
+>
+	<scroll-view scroll-y class="scroll-view-x">
+		<view
+		 class=""
+		 wx:for="{{50}}"
+		 wx:key="index"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			{{ index }}
+		</view>
+	</scroll-view>
+</w-popup>
+<w-button type="info" bind:onClick="handleClick3">Left</w-button>
+<w-popup
+ visible="{{ popup3 }}"
+ position="left"
+ bind:onClose="handleClose"
+>
+	<scroll-view scroll-y class="scroll-view-y">
+		<view
+		 class=""
+		 wx:for="{{50}}"
+		 wx:key="index"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			{{ index }}
+		</view>
+	</scroll-view>
+</w-popup>
+<w-button type="info" bind:onClick="handleClick4">Right</w-button>
+
+<w-popup
+ visible="{{ popup6 }}"
+ position="main"
+ height="45%"
+ width="72%"
+ padding="0"
+ bind:onClose="handleClose"
+ wuss-class="wuss-popup"
+>
+  <view class="demo-popup-6">
+    <w-qr-code size="200" text="hello world" />
+    <w-icon bindtap="handleClose" type="close" color="#999999" wuss-class="w-icon" />
+  </view>
+</w-popup>
+<w-button type="info" bind:onClick="handleClick6">Main</w-button>
+
+<w-popup
+ visible="{{ popup4 }}"
+ position="right"
+ bind:onClose="handleClose"
+>
+	<scroll-view scroll-y class="scroll-view-y">
+		<view
+		 class=""
+		 wx:for="{{50}}"
+		 wx:key="index"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			{{ index }}
+		</view>
+	</scroll-view>
+</w-popup>
+
+<w-pane desc="Disabled MaskCancel" />
+
+<w-button type="info" bind:onClick="handleClick5">Info</w-button>
+<w-popup
+ maskCancel="{{ false }}"
+ visible="{{ popup5 }}"
+ position="bottom"
+ height="250px"
+ bind:onClose="handleClose"
+>
+	<scroll-view scroll-y class="scroll-view-x">
+		<view
+		 class=""
+		 wx:for="{{50}}"
+		 wx:key="index"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			下拉点击关闭按钮{{ index }}
+		</view>
+	  <w-button type="info" bind:onClick="handleClose">关闭</w-button>
+	</scroll-view>
+</w-popup>
+

@@ -1,0 +1,13 @@
+<!--pages/request/index.wxml-->
+<view class="request">
+	<view class="title">每日一言</view>
+	<view class="body">
+		<view class="hitokoto">{{data.hitokoto}}</view>
+    <view class="form">
+    <view class="form" wx:if="{{data.from}}">出自：{{data.from}}</view>
+		<view class="from_who" wx:if="{{data.from_who}}">作者：{{data.from_who}}</view>
+    </view>
+		
+	</view>
+	<view class="btn" bindtap="getData">刷新</view>
+</view>

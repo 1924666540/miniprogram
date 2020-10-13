@@ -1,0 +1,54 @@
+<w-pane title="Checkbox" desc="复选框" />
+
+<w-pane desc="Default" />
+<w-cell-group>
+	<w-checkbox options="{{ items1 }}" bind:onChange="handleChange" />
+</w-cell-group>
+
+<view>{{ items1Str }}</view>
+
+<w-pane desc="Disabled" />
+<w-cell-group>
+	<w-checkbox options="{{ items2 }}" bind:onChange="handleChange" />
+</w-cell-group>
+
+<w-pane desc="Directon" />
+<w-cell-group>
+	<w-checkbox
+	 direction="right"
+	 options="{{ items1 }}"
+	 bind:onChange="handleChange"
+	/>
+</w-cell-group>
+
+<w-pane desc="IconType" />
+<w-cell-group>
+	<w-checkbox
+   icon-type="circle"
+	 direction="right"
+	 options="{{ items1 }}"
+	 bind:onChange="handleChange"
+	/>
+  <w-checkbox
+   icon-type="box"
+	 direction="right"
+	 options="{{ items1 }}"
+	 bind:onChange="handleChange"
+	/>
+  <w-checkbox
+   icon-type="check"
+	 direction="right"
+	 options="{{ items1 }}"
+	 bind:onChange="handleChange"
+	/>
+</w-cell-group>
+
+
+<w-pane desc="ArrayKeys" />
+<w-cell-group>
+	<w-checkbox
+	 direction="right"
+	 options="{{ items3 }}"
+	 bind:onChange="handleChange"
+	/>
+</w-cell-group>

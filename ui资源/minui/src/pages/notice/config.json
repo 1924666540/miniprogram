@@ -1,0 +1,22 @@
+{
+  "demos": [
+    {
+      "id": "default",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_1ld7hg9il0jbh847blkeb28f6cflh_303x40.png"
+      ]
+    },
+    {
+      "id": "static",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_0kkbh28fej9b18j68g61a48k1ki59_303x37.png"
+      ]
+    },
+    {
+      "id": "custom",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_1a99kc58cbkdbhi3a51c9ec7cec29_302x34.png"
+      ]
+    }
+  ]
+}

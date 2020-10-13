@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scoprion.mall.wx.mapper.WxTicketMapper">
+
+    <!-- 优惠卷列表 -->
+    <select id="findByUserId" resultType="com.scoprion.mall.domain.TicketExt">
+        SELECT
+        tks.id,
+        tku.user_id ,
+        tks.create_date,
+        tku.num,
+        tks.ticket_name,
+        tks.content,
+        tks.money,
+        tks.reduce_money,
+        tks.ticket_no,
+        tks.status,
+        tks.use_range,
+        tks.num_limit,
+        tks.type,
+        tks.start_date,
+        tks.end_date
+        FROM t_ticket_snapshot tks  LEFT JOIN t_ticket_user  tku  ON tks.id=tku.snapshot_id
+        WHERE   tku.user_id=#{userId} AND tks.status='NORMAL'
+    </select>
+
+    <!-- 根据用户id、优惠券id查询记录 -->
+    <select id="findByTicketIdAndUserId" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM t_ticket_snapshot ts
+        LEFT JOIN t_ticket_user tu ON tu.snapshot_id=ts.id
+        WHERE ts.ticket_id=#{ticketId} AND tu.user_id=#{userId}
+    </select>
+
+    <!--新增优惠券-y用户关系记录-->
+    <insert id="addTicketUser" parameterType="com.scoprion.mall.domain.TicketUser">
+        INSERT  INTO t_ticket_user(user_id,snapshot_id,num,create_date,status)
+        VALUES
+        (#{userId},#{snapshotId},#{num},now(),#{status})
+    </insert>
+
+    <!--优惠券详情-->
+    <select id="findById" resultType="com.scoprion.mall.domain.Ticket">
+        SELECT
+        id,
+        ticket_no,
+        ticket_name,
+        type,
+        content,
+        start_date,
+        end_date,
+        create_date,
+        update_date,
+        money,
+        reduce_money,
+        num,
+        status,
+        use_range,
+        num_limit,
+        use_date
+        FROM  t_ticket WHERE  id=#{id}
+    </select>
+
+    <!--领取后更新优惠券库存-->
+    <update id="updateTicketNum">
+        UPDATE t_ticket SET num=num-1 WHERE id=#{id}
+    </update>
+
+
+    <select id="findAll" resultType="com.scoprion.mall.domain.Ticket">
+        SELECT id,
+        ticket_no,
+        ticket_name,
+        type,
+        content,
+        start_date,
+        end_date,
+        create_date,
+        update_date,
+        money,
+        reduce_money,
+        num,
+        status,
+        use_range,
+        num_limit,
+        use_date
+         FROM t_ticket WHERE status='NORMAL'
+    </select>
+</mapper>

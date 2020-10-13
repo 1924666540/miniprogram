@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.backstage.mapper.PointMapper">
+
+    <!--更新积分-->
+    <update id="updatePoint">
+        UPDATE t_point SET point=point+#{pointVal} WHERE user_id=#{userId}
+    </update>
+
+    <select id="findByUserId" resultType="com.scoprion.mall.domain.Point">
+        SELECT id,
+        user_id,
+        point,
+        level,
+        level_name,
+        create_date,
+        update_date
+        FROM t_point WHERE user_id=#{userId} limit 1
+    </select>
+</mapper>

@@ -1,0 +1,53 @@
+<template>
+  <wxc-mask class="J_mask" content-align="cc" bind:masktap="maskTap">
+    <view class="content">
+      <button class="btn" bindtap="hideMask">隐藏遮罩层</button>
+    </view>
+  </wxc-mask>
+
+  <button bindtap="showMask">显示遮罩层</button>
+</template>
+
+
+<script>
+  export default {
+    config: {
+      usingComponents: {
+        'wxc-mask': '@minui/wxc-mask'
+      }
+    },
+
+    data: {},
+
+    /** note: 在 wxp 文件或者页面文件中请去掉 methods 包装 */
+    methods: {
+      maskTap() {
+        console.log('mask is clicked')
+      },
+      showMask() {
+        let $mask = this.selectComponent('.J_mask')
+        /*$mask.show()*/
+        $mask.toggle(true)
+      },
+      hideMask() {
+        let $mask = this.selectComponent('.J_mask')
+        /*$mask.hide()*/
+        $mask.toggle()
+      }
+    }
+  }
+</script>
+
+<style>
+  .content {
+    width: 500rpx;
+    height: 400rpx;
+    background: #fff;
+    display:flex;
+    align-items:center;
+  }
+  .btn {
+    width: 252rpx;
+    margin: 0 auto;
+  }
+</style>

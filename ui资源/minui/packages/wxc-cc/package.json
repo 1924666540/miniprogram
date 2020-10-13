@@ -1,0 +1,22 @@
+{
+  "name": "@minui/wxc-cc",
+  "version": "1.0.4",
+  "description": "MinUI 小程序组件 - 水平垂直居中",
+  "main": "dist/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meili/minui/tree/master/packages/wxc-cc"
+  },
+  "author": "Min Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@minui/wxc-flex": "1.0.6"
+  },
+  "minConfig": {
+    "component": true
+  }
+}

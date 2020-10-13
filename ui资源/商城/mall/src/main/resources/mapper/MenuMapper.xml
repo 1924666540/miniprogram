@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.backstage.mapper.MenuMapper">
+
+    <!--新增-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.SysMenu">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_sys_menu
+        (menu_name,pid,url,menu_type,status,icon,description,operator,sort,create_date)
+        VALUES
+        (#{menuName},#{pid},#{url},#{menuType},#{status},#{icon},#{description},#{operator},#{sort},now())
+    </insert>
+
+    <!--修改-->
+    <update id="modify" parameterType="com.scoprion.mall.domain.SysMenu">
+        UPDATE t_sys_menu SET
+        <if test="menuName!=null">menu_name=#{menuName},</if>
+        <if test="pid!=null">pid=#{pid},</if>
+        <if test="url!=null">url=#{url},</if>
+        <if test="menuType!=null">menu_type=#{menuType},</if>
+        <if test="status!=null">status=#{status},</if>
+        <if test="icon!=null">icon=#{icon},</if>
+        <if test="sort!=null">sort=#{sort},</if>
+        <if test="createDate!=null">create_date=#{createDate},</if>
+        <if test="description!=null">description=#{description},</if>
+        <if test="operator!=null">operator=#{operator},</if>
+        update_date=now()
+        WHERE id=#{id}
+    </update>
+
+    <!--模糊查询-->
+    <select id="findByCondition" resultType="com.scoprion.mall.domain.SysMenu">
+        SELECT
+        id,
+        menu_name,
+        pid,
+        url,
+        menu_type,
+        status,
+        icon,
+        sort,
+        create_date,
+        update_date,
+        description,
+        operator
+        FROM t_sys_menu WHERE 1=1
+        <if test="searchKey!=null">AND CONCAT_WS('', menu_name,description) LIKE #{searchKey}</if>
+        ORDER BY pid ASC
+    </select>
+
+    <!--根据ID删除活动,不做物理删除-->
+    <update id="deleteById">
+          UPDATE  t_sys_menu  SET  status='UN_NORMAL' WHERE  id=#{id}
+    </update>
+
+    <!--查询名称数量-->
+    <select id="validByName" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM  t_sys_menu WHERE  menu_name=#{menuName} AND status='NORMAL'
+    </select>
+
+    <!--查询名称数量-->
+    <select id="validByNameAndUrl" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM  t_sys_menu WHERE  menu_name=#{menuName} AND status='NORMAL' AND url=#{url}
+    </select>
+
+    <!--活动id、名称校验-->
+    <select id="validByIdAndNameAndUrl" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM t_sys_menu
+        WHERE url =#{url}
+        AND menu_name =#{menuName}
+        AND id!=#{id} AND status='NORMAL'
+    </select>
+
+    <!--根据ID查询详情-->
+    <select id="findById" resultType="com.scoprion.mall.domain.SysMenu">
+        SELECT
+         id,
+        menu_name,
+        pid,
+        url,
+        menu_type,
+        status,
+        icon,
+        sort,
+        create_date,
+        update_date,
+        description,
+        operator
+        FROM  t_sys_menu
+        WHERE  id=#{id}
+    </select>
+
+    <!--查询所有一级菜单-->
+    <select id="findRootMenuList" resultType="com.scoprion.mall.domain.SysMenu">
+        SELECT
+        id,
+        menu_name,
+        pid,
+        url,
+        menu_type,
+        status,
+        icon,
+        sort,
+        create_date,
+        update_date,
+        description,
+        operator
+        FROM  t_sys_menu
+        WHERE  pid='0'
+    </select>
+
+    <!--查询所有一级 二级菜单-->
+    <select id="findMenuListByRoleId" resultType="com.scoprion.mall.domain.SysMenu">
+        SELECT
+        menu.id,
+        menu.menu_name,
+        menu.pid,
+        menu.url,
+        menu.menu_type,
+        menu.status,
+        menu.icon,
+        menu.sort,
+        menu.create_date,
+        menu.update_date,
+        menu.description,
+        menu.operator
+        FROM t_sys_menu menu
+        LEFT JOIN t_sys_menu_role_relation menurole ON menurole.menu_id=menu.id
+        WHERE 1=1
+        AND status='NORMAL'
+        <if test="roleId!=null">AND menurole.role_id=#{roleId}</if>
+        <if test="menuType==0 ">AND menu.pid='0'</if>
+        <if test="menuType==1 ">AND menu.pid=#{parentId}</if>
+        GROUP BY menu.id
+        ORDER BY menu.sort ASC
+    </select>
+
+    <select id="findByParentIdAndUserId" resultType="com.scoprion.mall.domain.SysMenu">
+        SELECT
+        menu.id,
+        menu.menu_name,
+        menu.pid,
+        menu.url,
+        menu.menu_type,
+        menu.status,
+        menu.icon,
+        menu.sort,
+        menu.create_date,
+        menu.update_date,
+        menu.description,
+        menu.operator
+        FROM t_sys_menu menu
+        LEFT JOIN t_sys_menu_role_relation menurole ON menurole.menu_id=menu.id
+        LEFT JOIN t_sys_user_role tuserrole ON tuserrole.role_id=menurole.role_id
+        WHERE 1=1
+        AND status='NORMAL'
+        AND tuserrole.user_id=#{userId}
+        <if test="parentId==null">AND menu.pid=0</if>
+        <if test="parentId!=null">AND menu.pid=#{parentId}</if>
+        GROUP BY menu.id
+        ORDER BY menu.sort ASC
+    </select>
+
+
+</mapper>

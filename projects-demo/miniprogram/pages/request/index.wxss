@@ -1,0 +1,26 @@
+/* pages/request/index.wxss */
+.request{
+  padding: 10px 20px;
+  color: #6b6b6b;
+  font-size: 14px;
+}
+.title{
+  text-align: center;
+
+  font-weight: bold;
+}
+.body{
+  margin-top: 50px;
+}
+.form{
+  text-align: right;
+  margin-top: 20px;
+}
+.from_who{
+  margin-top: 10px;
+}
+.btn{
+  color: #2d8cf0;
+  text-align: center;
+  margin-top: 30px;
+}

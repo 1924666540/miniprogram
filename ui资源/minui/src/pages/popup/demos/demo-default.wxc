@@ -1,0 +1,42 @@
+<template>
+  <button bindtap="showPopup">默认居中，无动画</button>
+
+  <wxc-popup class="J_Popup">
+      <view class="popup__content">Hello World</view>
+  </wxc-popup>
+</template>
+
+<script>
+export default {
+  config: {
+    usingComponents: {
+      'wxc-popup': '@minui/wxc-popup'
+    }
+  },
+  data: {},
+  /** note: 在 wxp 文件或者页面文件中请去掉 methods 包装 */
+  methods: {
+    showPopup() {
+      let popupComponent = this.selectComponent('.J_Popup');
+      /*popupComponent && popupComponent.show();*/
+        popupComponent && popupComponent.toggle(true);
+    },
+    hidePopup() {
+      let popupComponent = this.selectComponent('.J_Popup');
+      //popupComponent && popupComponent.hide();
+        popupComponent && popupComponent.toggle();
+    }
+  }
+}
+</script>
+
+<style>
+  .popup__content {
+    width: 300rpx;
+    height: 300rpx;
+    line-height: 300rpx;
+    background: #FFFFFF;
+    border-radius: 12rpx;
+    text-align: center;
+  }
+</style>

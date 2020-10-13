@@ -1,0 +1,21 @@
+<w-pane title="Tag" desc="标签" />
+<view class="tag-container">
+
+<w-tag bind:onClick="tagClick">VIP</w-tag>
+<w-tag color="magenta">VIP</w-tag>
+<w-tag color="red">VIP</w-tag>
+<w-tag color="volcano">VIP</w-tag>
+<w-tag color="orange">VIP</w-tag>
+<w-tag color="gold">VIP</w-tag>
+<w-tag color="lime">VIP</w-tag>
+<w-tag color="green">VIP</w-tag>
+<w-tag color="cyan">VIP</w-tag>
+<w-tag color="blue">VIP</w-tag>
+<w-tag color="geekblue">VIP</w-tag>
+<w-tag color="purple">VIP</w-tag>
+<w-tag closeable bindafterClose="afterClose" bindonClose="close" visible="{{ visible }}">点击关闭</w-tag>
+<w-tag tagStyle="color:#fff;background-color:green;border-color:green;">Green</w-tag>
+<w-tag tagStyle="color:pink;border-color:pink;">Pink</w-tag>
+
+<w-button type="info" bind:onClick="toggleTag">toggleTag</w-button>
+</view>

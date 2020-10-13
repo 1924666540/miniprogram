@@ -1,0 +1,27 @@
+<template>
+    <wxc-toast
+        class="J_toast"
+        text="Hello World"></wxc-toast>
+    <button bindtap="showToast">调用 show() 方法显示</button>
+</template>
+
+<script>
+  export default {
+    config: {
+      usingComponents: {
+        'wxc-toast': '@minui/wxc-toast'
+      }
+    },
+    data: {},
+    /** note: 在 wxp 文件或者页面文件中请去掉 methods 包装 */
+    methods: {
+      showToast() {
+        let $toast = this.selectComponent(".J_toast")
+        $toast && $toast.show('这是show方法传值')
+      }
+    }
+  }
+</script>
+
+<style>
+</style>

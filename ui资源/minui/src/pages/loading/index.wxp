@@ -1,0 +1,43 @@
+<template>
+  <example title="loading" desc="加载提示">
+
+    <example-demo title="设置type" desc="type: mall，小店微商城loading样式">
+      <demo-default></demo-default>
+    </example-demo>
+
+    <example-demo title="配置图片" desc="配置女装小程序 loading 背景图">
+      <demo-custom></demo-custom>
+    </example-demo>
+
+    <example-demo title="调用方法控制显示" desc="调用 show() 方法显示 loading">
+      <demo-method></demo-method>
+    </example-demo>
+
+  </example>
+</template>
+
+<script>
+export default {
+  config: {
+    usingComponents: {
+      'example': '@minui/wxc-example',
+      'example-demo': '@minui/wxc-example-demo',
+      'example-md': '@minui/wxc-example-md',
+      'demo-default': './demos/demo-default',
+      'demo-custom': './demos/demo-custom',
+      'demo-method': './demos/demo-method',
+    }
+  },
+  data: {},
+  onShareAppMessage: function () {
+    return {
+      title: '加载提示 - MinUI小程序组件库',
+      path: '/pages/loading/index'
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

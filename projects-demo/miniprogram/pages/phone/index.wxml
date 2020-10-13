@@ -1,0 +1,4 @@
+<!--pages/phone/index.wxml-->
+<view class="phone">
+	<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取本机手机号</button>
+</view>

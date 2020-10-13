@@ -1,0 +1,31 @@
+<!--miniprogram/pages/login/index.wxml-->
+<view class="login">
+<map-auth show="{{showDialog}}" bindgetUserInfo="getUserInfo"/>
+	<view class="page__bd">
+		<view class="weui-panel weui-panel_access">
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  bindtap="setShowDialog">
+					<block wx:if="{{userInfo}}">
+						<view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+							<image src="{{userInfo.avatarUrl}}"  class="weui-media-box__thumb" />
+						</view>
+						<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+							<view class="weui-media-box__title">{{userInfo.nickName}}</view>
+						</view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+							<view class="weui-media-box__title cancellation" catchtap="logout">注销</view>
+						</view>
+					</block>
+					<block wx:else>
+						<view class="weui-media-box__hd weui-media-box__hd_in-appmsg" >
+							<image class="weui-media-box__thumb" />
+						</view>
+						<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+							<view class="weui-media-box__title">授权登录</view>
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

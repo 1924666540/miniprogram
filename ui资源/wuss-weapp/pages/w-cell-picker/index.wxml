@@ -1,0 +1,44 @@
+<w-pane title="CellPicker" desc="选择器" />
+
+<w-pane desc="Default" />
+
+<w-cell-group>
+	<w-cell-picker
+	 label="多选联动模式"
+	 options="{{ options1 }}"
+	 title="请选择地区"
+	 defaultValue="{{ ['440000', '440100', '440105'] }}"
+   bind:onSelect="handleSelect"
+	/>
+  <w-cell-picker
+	 label="单选模式"
+	 title="请选择性别"
+	 options="{{ options2 }}"
+	 defaultValue="女"
+   shouldValueUpdate="{{ shouldValueUpdate }}"
+   bind:onSelect="handleSelect"
+	/>
+  <w-cell-picker
+	 label="单选模式2"
+	 title="请选择岗位"
+	 options="{{ options4 }}"
+   defaultValue="{{ 0 }}"
+   bind:onSelect="handleSelect"
+	/>
+  <w-cell-picker
+	 label="多选联动模式"
+   placeholder="请选择语言"
+	 options="{{ options3 }}"
+   defaultValue="{{ ['1', '4'] }}"
+   currentValue="{{ currentValue }}"
+	 title="请选择语言"
+   bind:onSelect="handleSelect"
+  />
+
+</w-cell-group>
+
+<w-pane desc="动态切换多选联动" />
+<button bindtap="setcurrent1">php -> [1, 1]</button>
+<button bindtap="setcurrent2">html5 -> [0, 2]</button>
+<button bindtap="setcurrent3">java -> [1, 0]</button>
+

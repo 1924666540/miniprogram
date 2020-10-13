@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.wx.mapper.WxTicketSnapshotMapper">
+
+    <!--新增-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.TicketSnapshot">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_ticket_snapshot(ticket_name,
+        content,
+        start_date,
+        end_date,
+        money,
+        reduce_money,
+        num,
+        create_date,
+        ticket_no,
+        type,
+        use_range,
+        num_limit,
+        ticket_id,
+        status,
+        use_date)
+        VALUES(#{ticketName},
+        #{content},
+        #{startDate},
+        #{endDate},
+        #{money},
+        #{reduceMoney},
+        #{num},
+        now(),
+        #{ticketNo},
+        #{type},
+        #{useRange},
+        #{numLimit},
+        #{ticketId},
+        #{status},
+        #{useDate})
+    </insert>
+
+    <!--查询详情-->
+    <select id="findById" resultType="com.scoprion.mall.domain.TicketSnapshot">
+        SELECT
+        id,
+        ticket_name,
+        content,
+        start_date,
+        end_date,
+        money,
+        reduce_money,
+        num,
+        status,
+        create_date,
+        ticket_no,
+        type,
+        use_date,
+        use_range,
+        num_limit
+        FROM  t_ticket_snapshot WHERE id=#{id}
+    </select>
+
+
+    <!--查询详情-->
+    <select id="findByUserIdAndTicketId" resultType="com.scoprion.mall.domain.TicketSnapshot">
+        SELECT
+        id,
+        ticket_name,
+        content,
+        start_date,
+        end_date,
+        money,
+        reduce_money,
+        num,
+        status,
+        create_date,
+        ticket_no,
+        type,
+        use_date,
+        use_range,
+        num_limit
+        FROM  t_ticket_snapshot
+        WHERE id=#{ticket}
+    </select>
+
+    <!--修改-->
+    <update id="update" parameterType="com.scoprion.mall.domain.TicketSnapshot">
+        UPDATE t_ticket_snapshot SET
+        <if test="ticketNo!=null ">ticket_no=#{ticketNo},</if>
+        <if test="ticketName!=null ">ticketName=#{ticketName},</if>
+        <if test="type!=null ">type=#{type},</if>
+        <if test="content!=null ">content=#{content},</if>
+        <if test="startDate!=null ">start_date=#{startDate},</if>
+        <if test="endDate!=null ">end_date=#{endDate},</if>
+        <if test="createDate!=null ">create_date=#{createDate},</if>
+        <if test="money!=null ">money=#{money},</if>
+        <if test="reduceMoney!=null ">reduce_money=#{reduceMoney},</if>
+        <if test="num!=null ">num=#{num},</if>
+        <if test="status!=null ">status=#{status},</if>
+        <if test="useRange!=null ">use_range=#{useRange},</if>
+        <if test="useDate!=null ">use_date=#{useDate},</if>
+        <if test="numLimit!=null ">num_limit=#{numLimit},</if>
+        update_date=now()
+        where id=#{id}
+    </update>
+
+    <!--修改状态-->
+    <update id="modifyStatus" parameterType="com.scoprion.mall.domain.TicketSnapshot">
+        UPDATE t_ticket_snapshot SET
+        <if test="status!=null and status!=''">status=#{status},</if>
+        use_date=now(),
+        update_date=now()
+        where id=#{id}
+    </update>
+
+</mapper>

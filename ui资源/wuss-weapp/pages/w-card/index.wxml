@@ -1,0 +1,75 @@
+<w-pane title="Card" desc="卡片" />
+
+<w-pane desc="Slot" />
+<w-card
+ loading="{{ loading }}"
+ title="标题"
+ extra="副标题"
+ content="内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区"
+ footer="底部信息"
+ footer-extra="底部副标题"
+/>
+
+<view style="margin: 20px 0;" hover-class="none" hover-stop-propagation="false">
+  <w-cell-group>
+    <w-cell label="开启loading">
+      <w-switch color="#ff9900" slot="content" bind:onChange="handleChange" />
+    </w-cell>
+  </w-cell-group>
+</view>
+
+<w-pane desc="Full" />
+<w-card
+ full
+ shadow="{{ false }}"
+ title="标题"
+ extra="副标题"
+ content="内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区内容区"
+ footer="底部信息"
+ footer-extra="底部副标题"
+/>
+
+<w-pane desc="Slot" />
+<w-card>
+	<view
+	 slot="title"
+	 class="w-card-title"
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		标题
+	</view>
+	<view
+	 slot="extra"
+	 class="w-card-extra"
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		副标题
+	</view>
+	<view
+	 slot="content"
+	 class="w-card-content"
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		内容区内容区内容区内容区内容区内容区内容区内容区
+	</view>
+	<view
+	 slot="footer"
+	 class="w-card-footer"
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		底部
+	</view>
+	<view
+	 slot="footer-extra"
+	 class="w-card-footer-extra"
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		底部extra
+	</view>
+</w-card>
+

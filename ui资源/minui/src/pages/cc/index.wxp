@@ -1,0 +1,36 @@
+<template>
+  <example title="wxc-cc" desc="水平垂直居中">
+
+    <example-demo title="默认示例" desc="一个水平垂直居中的图片">
+      <demo-default></demo-default>
+    </example-demo>
+
+    <example-demo title="多元素" desc="">
+      <demo-multiple></demo-multiple>
+    </example-demo>
+
+    <example-demo title="图片加一换行的文字" desc="">
+      <demo-wrap></demo-wrap>
+    </example-demo>
+
+  </example>
+</template>
+
+<script>
+export default {
+  config: {
+    usingComponents: {
+      'example': '@minui/wxc-example',
+      'example-demo': '@minui/wxc-example-demo',
+      'example-md': '@minui/wxc-example-md',
+      'demo-default': './demos/demo-default',
+      'demo-multiple': './demos/demo-multiple',
+      'demo-wrap': './demos/demo-wrap'
+    }
+  },
+  data: {}
+}
+</script>
+
+<style>
+</style>

@@ -1,0 +1,12 @@
+<template name="navFootTemplate">
+    <view class="cu-bar tabbar bg-white shadow foot" style="background-color:{{tabbar.backgroundColor}}; border-top-color:{{tabbar.borderStyle}}; {{tabbar.position == 'top' ? 'top:0' : 'bottom:0'}}">
+        <block wx:for="{{tabbar.list}}" wx:for-item="item" wx:key="index">
+            <navigator class="action" url="{{item.pagePath}}" hover-class="none" open-type="redirect">
+                <view class='cuIcon-cu-image'>
+                    <image src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+                </view>
+                <view style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}">{{item.text}}</view>
+            </navigator >
+        </block>
+    </view>
+</template>

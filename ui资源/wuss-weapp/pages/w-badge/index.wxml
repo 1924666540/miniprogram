@@ -1,0 +1,20 @@
+<w-pane title="Badge" desc="徽章" />
+
+<view bindtap="a">
+
+	<w-pane desc="显示数量徽章" />
+
+	<w-badge catchtap="topR" value="99">
+		<view class="wuss-class-round" />
+	</w-badge>
+
+	<w-pane desc="显示数量徽章 max 属性设置最大值" />
+	<w-badge
+	 catchtap="topR"
+	 max="99"
+	 value="100"
+	>
+		<view class="wuss-class-round" />
+	</w-badge>
+</view>
+

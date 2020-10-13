@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "map-auth": "../../components/auth/dialog"
+  }
+}

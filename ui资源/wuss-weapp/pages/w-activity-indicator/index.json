@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "ActivityIndicator 活动指示器",
+  "usingComponents": {
+    "w-indicator": "/dist/w-activity-indicator/index",
+    "w-pane": "/dist/w-pane/index"
+  }
+}

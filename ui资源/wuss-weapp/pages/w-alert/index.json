@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Alert 弹出框",
+  "usingComponents": {
+    "w-alert": "/dist/w-alert/index",
+    "w-button": "/dist/w-button/index",
+    "w-pane": "/dist/w-pane/index"
+  }
+}

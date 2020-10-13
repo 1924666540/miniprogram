@@ -1,0 +1,42 @@
+<template>
+  <wxc-loading
+    is-show="{{$loading.isShow}}"
+    type="mall"
+  ></wxc-loading>
+  <button bindtap="showLoading">设置 type</button>
+</template>
+
+<script>
+export default {
+  config: {
+    usingComponents: {
+      'wxc-loading': '@minui/wxc-loading'
+    }
+  },
+  data: {
+    $loading: {
+      isShow: false
+    }
+  },
+  /** note: 在 wxp 文件或者页面文件中请去掉 methods 包装 */
+  methods: {
+    showLoading() {
+      this.setData({
+        $loading: {
+          isShow: true
+        }
+      })
+      setTimeout(() => {
+        this.setData({
+          $loading: {
+            isShow: false
+          }
+        })
+      }, 1000)
+    }
+  }
+}
+</script>
+
+<style>
+</style>

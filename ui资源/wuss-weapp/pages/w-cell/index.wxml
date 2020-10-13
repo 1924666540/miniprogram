@@ -1,0 +1,153 @@
+<w-pane title="Cell" desc="列表" />
+
+<w-pane desc="Default" />
+<w-cell-group>
+	<w-cell
+	 label="列表"
+	 highlight
+	 content="内容"
+	/>
+</w-cell-group>
+
+<w-pane desc="Desc" />
+<w-cell-group>
+	<w-cell
+	 label="列表"
+	 highlight
+	 content="内容"
+	 desc="附加标题"
+	/>
+</w-cell-group>
+
+<w-pane desc="Multiple" />
+<w-cell-group>
+	<w-cell
+	 isLink
+	 label="列表{{index}}"
+	 highlight
+	 content="内容{{index}}"
+	 wx:for="{{4}}"
+	 wx:key="index"
+	/>
+</w-cell-group>
+
+<w-pane desc="Link" />
+<w-cell-group>
+	<w-cell
+	 isLink
+	 label="navigateTo"
+	 highlight
+	 content="w-button"
+	 link="../w-button/index"
+	/>
+	<w-cell
+	 isLink
+   label="redirectTo"
+	 highlight
+	 content="w-button"
+	 linkType="redirectTo"
+	 link="../w-button/index"
+	/>
+	<w-cell
+	 isLink
+	 label="switchTab"
+	 highlight
+	 content="index"
+	 linkType="redirectTo"
+	 link="../index/index"
+	/>
+	<w-cell
+	 isLink
+	 label="navigateBack"
+	 highlight
+	 content="w-button"
+	 linkType="navigateBack"
+	 delta="1"
+	/>
+</w-cell-group>
+
+<w-pane desc="Icon" />
+<w-cell-group>
+	<w-cell
+	 isLink
+	 label="example title"
+	 highlight
+	 content="example description"
+	 icon="home"
+	/>
+</w-cell-group>
+
+<w-pane desc="Disabled" />
+<w-cell-group>
+	<w-cell
+	 isLink
+	 disabled
+	 label="消息"
+	 link="/message"
+	/>
+	<w-cell
+	 isLink
+	 disabled
+	 label="列表"
+	 link="/message"
+	/>
+	<w-cell
+	 isLink
+	 disabled
+	 label="设置"
+	 link="/message"
+	/>
+</w-cell-group>
+
+<w-pane desc="Slot" />
+<w-cell-group>
+	<w-cell
+	 isLink
+	 highlight
+	 icon="home"
+	 link="/message"
+	>
+		<view slot="label">
+			我的消息
+		</view>
+		<view slot="content">
+			内容
+		</view>
+	</w-cell>
+	<w-cell
+	 isLink
+	 highlight
+	 desc="您在闲鱼上售卖的产品已出售，点击查看详情"
+	 wuss-class-hd="w-cell-hd"
+	 wuss-class-left="w-cell-left"
+	>
+		<view
+		 slot="label"
+		 class="w-cell-label"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			<view
+			 class="left"
+			 hover-class="none"
+			 hover-stop-propagation="false"
+			>
+				您有新的通知
+			</view>
+			<view
+			 style="font-size: 14px;color: #999999;"
+			 class="right"
+			 hover-class="none"
+			 hover-stop-propagation="false"
+			>
+				10-31 09:12
+			</view>
+		</view>
+		<image
+		 slot="icon"
+		 class="w-cell-avatar"
+		 src="../../assets/logo.png"
+		/>
+	</w-cell>
+</w-cell-group>
+

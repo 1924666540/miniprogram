@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.wx.mapper.WxGoodSnapShotMapper">
+    <!--新增快照-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.good.GoodSnapshot">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_good_snapshot(good_snapshot_no,
+        good_name,
+        good_no,
+        good_description,
+        promotion,
+        price,
+        discount,
+        main_image_url,
+        create_date,
+        rich_content,
+        seller_id,
+        good_id)
+        VALUES (#{goodSnapShotNo},
+        #{goodName},
+        #{goodNo},
+        #{goodDescription},
+        #{promotion},
+        #{price},
+        #{discount},
+        #{mainImageUrl},
+        NOW(),
+        #{richContent},
+        #{sellerId},
+        #{goodId})
+    </insert>
+
+    <!--查询详情-->
+    <select id="findById" resultType="com.scoprion.mall.domain.good.GoodSnapshot">
+        SELECT  id,
+        good_id,
+        good_snapshot_no,
+        good_name,
+        good_no,
+        good_description,
+        promotion,
+        price,
+        discount,
+        main_image_url,
+        rich_content,
+        create_date
+        FROM  t_good_snapshot WHERE  id=#{id}
+    </select>
+</mapper>

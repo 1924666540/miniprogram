@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scoprion.mall.wx.mapper.WxPointLogMapper">
+
+    <!--获取积分日志详情-->
+    <select id="findLogPage" resultType="com.scoprion.mall.domain.PointLog">
+        SELECT id,
+        user_id,
+        action,
+        current_point,
+        operate_point,
+        create_date
+        FROM t_point_log
+        WHERE user_id=#{userId}
+        ORDER BY create_date DESC
+    </select>
+
+    <!-- 获取用户积分日志详情 -->
+    <select id="findByUserId" resultType="com.scoprion.mall.domain.PointLog">
+        SELECT  id,
+        user_id,
+        action,
+        current_point,
+        operate_point,
+        create_date
+        FROM t_point_log WHERE user_id=#{userId}
+    </select>
+
+    <!--增加-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.PointLog">
+        INSERT  INTO t_point_log
+        (user_id,action,current_point,operate_point,create_date)
+        VALUES
+        (#{userId},#{action},#{currentPoint},#{operatePoint},now())
+    </insert>
+</mapper>

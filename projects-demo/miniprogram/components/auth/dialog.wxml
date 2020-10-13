@@ -1,0 +1,18 @@
+<view bindtap="close" class="weui-mask {{!show ? 'weui-mask_hidden' : '' }}" wx:if="{{mask}}"></view>
+<view wx:if="{{show}}" bindtap="close" class="weui-dialog__wrp {{extClass}}">
+    <view class="weui-dialog">
+      <view class="weui-dialog__hd">
+        <view class="weui-dialog__title">
+          您还未登录
+        </view>
+      </view>
+      <view class="weui-dialog__bd">
+        请先登录再进行操作
+      </view>
+      <view class="weui-dialog__ft">
+        <button class="weui-dialog__btn weui-dialog__btn_primary" data-index="0" bindtap="close">暂不登录</button>
+        <button class="weui-dialog__btn weui-dialog__btn_default" open-type="getUserInfo" bindgetuserinfo="getUserInfo" >立即登录</button>
+      </view>
+    </view>
+</view>
+

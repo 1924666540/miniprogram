@@ -1,0 +1,28 @@
+{
+  "demos": [
+    {
+      "id": "default",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_7i8l92i27jlh1jhd0l1c34h0a5ic7_300x42.png"
+      ]
+    },
+    {
+      "id": "static",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_3bfe9c835c32k4ajakfjihd91fhkf_304x45.png"
+      ]
+    },
+    {
+      "id": "input",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_1gkc85jba6djkaiig0a5541cligk4_305x50.png"
+      ]
+    },
+    {
+      "id": "custom",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_5ib66i6fece86e72ei74ha5g52fjg_302x44.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scoprion.mall.wx.mapper.WxPointMapper">
+
+    <!-- 根据用户id查询用户信息 -->
+    <select id="findByUserId" resultType="com.scoprion.mall.domain.Point">
+        SELECT id,
+        user_id,
+        point,
+        level,
+        level_name,
+        create_date,
+        update_date
+        FROM t_point WHERE user_id=#{userId}
+    </select>
+
+
+    <!-- 等级划分 -->
+    <update id="level">
+        UPDATE t_point SET
+        <if test="id!=null">id=#{id},</if>
+        <if test="point!=null">point=#{point},</if>
+        <if test="level!=null">level=#{level},</if>
+        <if test="levelName!=null">level_name=#{levelName},</if>
+        update_date=now()
+        WHERE user_id=#{userId}
+    </update>
+
+
+    <!--增加-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.Point">
+        INSERT  INTO t_point
+        (user_id,point,level,level_name,create_date)
+        VALUES
+        (#{userId},#{point},#{level},#{levelName},now())
+    </insert>
+
+</mapper>

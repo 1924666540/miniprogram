@@ -1,0 +1,21 @@
+{
+  "name": "@minui/wxc-toast",
+  "version": "1.0.9",
+  "description": "MinUI 小程序组件 - 提示框",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meili/minui/tree/master/packages/wxc-toast"
+  },
+  "author": "Min Team",
+  "license": "MIT",
+  "dependencies": {
+    "@minui/wxc-icon": "^1.0.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "minConfig": {
+    "component": true
+  }
+}

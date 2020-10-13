@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.wx.mapper.WxOrderMapper">
+    <!--下单-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.order.Order">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_order(user_id,
+        order_no,
+        good_snapshot_id,
+        delivery_id,
+        order_status,
+        order_type,
+        message,
+        recipients,
+        phone,
+        province,
+        city,
+        area,
+        address,
+        post_code,
+        good_name,
+        count,
+        wx_order_no,
+        create_date,
+        good_id,
+        seller_id,
+        use_ticket,
+        ticket_id,
+        remark,
+        order_fee,
+        reduce_fee,
+        payment_fee,
+        good_fee,
+        operate_point,
+        freight_fee,
+        delivery_no,
+        use_point
+        )
+        VALUES (#{userId},
+        #{orderNo},
+        #{goodSnapShotId},
+        #{deliveryId},
+        'UN_PAY',
+        #{orderType},
+        #{message},
+        #{recipients},
+        #{phone},
+        #{province},
+        #{city},
+        #{area},
+        #{address},
+        #{postCode},
+        #{goodName},
+        #{count},
+        #{wxOrderNo},
+        NOW(),
+        #{goodId},
+        #{sellerId},
+        #{useTicket},
+        #{ticketId},
+        #{remark},
+        #{orderFee},
+        #{reduceFee},
+        #{paymentFee},
+        #{goodFee},
+        #{operatePoint},
+        #{freightFee},
+        #{deliveryNo},
+        #{usePoint})
+    </insert>
+
+    <!--修改订单微信预付款订单号-->
+    <update id="updateOrderForPrepayId">
+        UPDATE t_order SET prepay_id=#{prepayId} WHERE id=#{orderId}
+    </update>
+
+
+    <!--根据订单id查询预付款信息-->
+    <select id="findPrepayIdByOrderId" resultType="java.lang.String">
+        SELECT prepay_id FROM t_order WHERE  id=#{orderId}
+    </select>
+
+    <!--我的订单-->
+    <select id="findByUserId" resultType="com.scoprion.mall.domain.order.OrderExt">
+        SELECT tor.id,
+        tor.user_id,
+        tor.order_no,
+        tor.good_id,
+        tor.seller_id,
+        tor.good_snapshot_id,
+        tor.delivery_id,
+        tor.order_status,
+        tor.order_type,
+        tor.pay_type,
+        tor.message,
+        tor.good_name,
+        tor.count,
+        tor.pay_date,
+        tor.send_good_id,
+        tor.use_ticket,
+        tor.ticket_id,
+        tor.remark,
+        tor.order_fee,
+        tor.reduce_fee,
+        tor.payment_fee,
+        tor.good_fee,
+        tor.use_point,
+        tor.delivery_no,
+        tor.operate_point,
+        tor.freight_fee,
+        tg.main_image_url as goodMainImage,
+        tsg.express_name as expressName
+        FROM t_order tor
+        LEFT JOIN t_good_snapshot tg ON tor.good_snapshot_id=tg.id
+        LEFT JOIN t_send_good tsg ON tor.id=tsg.order_id
+        WHERE tor.user_id=#{userId}
+        <if test="orderStatus!=null">
+            AND tor.order_status=#{orderStatus}
+        </if>
+        GROUP BY tor.id
+    </select>
+
+
+    <!--付款回调-->
+    <update id="updateOrderStatusAndPayStatusAndWxOrderNo">
+        UPDATE t_order SET
+        pay_date=#{payDate},
+        pay_type='WE_CHAT_PAY',
+        order_status='UN_DELIVERY',
+        wx_order_no=#{wxOrderNo}
+        WHERE order_no=#{orderNo}
+    </update>
+
+    <!--根据微信号查询订单-->
+    <select id="findByWxOrderNo" resultType="com.scoprion.mall.domain.order.Order">
+        SELECT id,
+        user_id,
+        seller_id,
+        order_no,
+        use_point,
+        count,
+        good_id,
+        good_name,
+        order_fee,
+        reduce_fee,
+        payment_fee,
+        good_fee,
+        freight_fee,
+        operate_point,
+        pay_date
+        FROM t_order WHERE order_no=#{orderNo}
+    </select>
+
+    <!--订单详情-->
+    <select id="findByOrderId" resultType="com.scoprion.mall.domain.order.Order">
+      SELECT id,
+      user_id,
+      seller_id,
+      order_no,
+      good_snapshot_id,
+      delivery_id,
+      delivery_no,
+      order_status,
+      order_type,
+      pay_type,
+      message,
+      order_fee,
+      reduce_fee,
+      payment_fee,
+      good_fee,
+      freight_fee,
+      create_date,
+      pay_date,
+      delivery_date,
+      update_date,
+      recipients,
+      phone,
+      province,
+      city,
+      area,
+      address,
+      post_code,
+      good_name,
+      count,
+      prepay_id,
+      wx_order_no,
+      good_id,
+      remark,
+      use_ticket,
+      use_point,
+      ticket_id,
+      operate_point,
+      send_good_id
+      FROM t_order WHERE id=#{orderId}
+    </select>
+
+    <!--根据订单号修改订单状态-->
+    <update id="updateByOrderID">
+        UPDATE t_order SET  order_status=#{orderStatus} WHERE id=#{orderId}
+    </update>
+
+    <!--根据订单号修改订单状态-->
+    <update id="updateStatus">
+        UPDATE t_order SET  order_status='REFUND' WHERE id=#{orderId}
+    </update>
+
+    <update id="update">
+        UPDATE t_order SET  refund_date=NOW() WHERE id=#{orderId}
+    </update>
+
+    <!-- 签收后评价 -->
+    <insert id="estimate" parameterType="com.scoprion.mall.domain.Estimate">
+        INSERT INTO t_estimate(
+        good_id,
+        message,
+        user_id,
+        create_date,
+        update_date)
+        VALUES (#{goodId},
+        #{message},
+        #{userId},
+        now(),
+        now())
+    </insert>
+
+    <!-- 投诉 -->
+    <update id="complain">
+        UPDATE t_estimate SET
+        <if test="complain!=null">complain=#{complain},</if>
+        update_date=now()
+        WHERE id=#{id}
+    </update>
+
+    <!-- 订单详情 -->
+    <select id="personalScore" resultType="com.scoprion.mall.domain.order.Order">
+        SELECT tor.id,
+        tor.user_id,
+        tor.seller_id,
+        tor.use_point,
+        tor.order_no,
+        tor.good_snapshot_id,
+        tor.delivery_id,
+        tor.order_status,
+        tor.order_type,
+        tor.pay_type,
+        tor.message,
+        tor.order_fee,
+        tor.reduce_fee,
+        tor.payment_fee,
+        tor.good_fee,
+        tor.freight_fee,
+        tor.create_date,
+        tor.pay_date,
+        tor.delivery_date,
+        tor.update_date,
+        tor.recipients,
+        tor.phone,
+        tor.province,
+        tor.city,
+        tor.area,
+        tor.address,
+        tor.post_code,
+        tor.good_name,
+        tor.count,
+        tor.prepay_id,
+        tor.wx_order_no,
+        tor.good_id,
+        tor.remark,
+        tor.use_ticket,
+        tor.ticket_id,
+        tor.operate_point,
+        tor.send_good_id,
+        tor.delivery_no,
+        FROM t_order tor
+        WHERE tor.id=#{id}
+    </select>
+
+
+    <!--查询 申请退款时间大于两天（48小时） 的订单 REFUNDING 60*60*48-->
+    <select id="findRefundingOrder" resultType="com.scoprion.mall.domain.order.Order">
+        SELECT
+        id,
+        order_no,
+        wx_order_no,
+        refund_fee,
+        payment_fee,
+        order_status
+        FROM t_order
+        WHERE order_status ='REFUNDING' AND UNIX_TIMESTAMP(now()) - UNIX_TIMESTAMP(refund_date) > 60*10
+    </select>
+
+    <!--查询4-24小时内未支付的订单列表 UNIX_TIMESTAMP秒  60*60*4 -->
+    <select id="findUnPayOrder" resultType="com.scoprion.mall.domain.order.Order">
+        SELECT
+        id,
+        order_no,
+        wx_order_no,
+        order_status
+        FROM t_order
+        WHERE order_status ='UN_PAY'
+        AND UNIX_TIMESTAMP(now()) - UNIX_TIMESTAMP(create_date) BETWEEN 60*60*4 AND 60*60*24
+    </select>
+
+    <!--修改订单状态-->
+    <update id="updateOrderStatusById">
+        UPDATE t_order SET
+        order_status=#{orderStatus},
+        update_date=NOW()
+        WHERE id=#{id}
+    </update>
+</mapper>

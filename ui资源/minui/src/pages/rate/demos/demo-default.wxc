@@ -1,0 +1,23 @@
+<template>
+  <wxc-rate bind:rate="onClick"></wxc-rate>
+</template>
+
+<script>
+export default {
+  config: {
+    usingComponents: {
+      'wxc-rate': '@minui/wxc-rate'
+    }
+  },
+  data: { },
+  /** note: 在 wxp 文件或者页面文件中请去掉 methods 包装 */
+  methods: {
+      onClick(e) {
+          console.log(e.detail.value);
+      }
+  }
+}
+</script>
+
+<style>
+</style>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scoprion.mall.wx.mapper.WxFreeMapper">
+
+    <!-- 查询活动详情 -->
+    <select id="findById" resultType="com.scoprion.mall.domain.Activity">
+        SELECT
+        id,
+        name,
+        status,
+        activity_type,
+        create_date,
+        update_date,
+        target,
+        num,
+        start_date,
+        end_date,
+        discount,
+        describes
+        FROM t_activity WHERE id=#{activityId}
+    </select>
+
+    <!-- 查询活动商品详情 -->
+    <select id="findByActivityIdAndGoodId" resultType="com.scoprion.mall.domain.ActivityGoods">
+        SELECT
+        id,
+        activity_id,
+        good_id,
+        create_date,
+        stock,
+        update_date
+        FROM t_activity_good WHERE good_id=#{goodId}
+    </select>
+
+    <!-- 查询是否参加过该活动 -->
+    <select id="validByActivityIdAndGoodIdAndUserId" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_user_activity WHERE user_id=#{userId} AND activity_id=#{activityId} AND good_id=#{goodId}
+    </select>
+
+    <!--新增参加过的活动记录-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.UserActivity">
+        INSERT INTO t_user_activity (
+            activity_id,
+            user_id,
+            good_id,
+            create_date
+        ) VALUES (
+            #{activityId},
+            #{userId},
+            #{goodId},
+            NOW()
+        )
+
+    </insert>
+</mapper>

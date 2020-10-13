@@ -1,0 +1,11 @@
+{
+  "style": {
+    "brandColor": "#FF0077",
+    "controlColor": "#FF5777",
+    "mainHeadingColor": "#333333",
+    "subHeadingColor": "#666666",
+    "darkPromptColor": "#999999",
+    "splitLineColor": "#ECECEC",
+    "backgroundColour": "#EFEFEF"
+  }
+}

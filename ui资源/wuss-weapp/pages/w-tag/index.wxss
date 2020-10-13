@@ -1,0 +1,9 @@
+/* pages/w-tag/index.wxss */
+
+.tag-container {
+  padding: 0 20rpx;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.a {
+  color: blue;
+}

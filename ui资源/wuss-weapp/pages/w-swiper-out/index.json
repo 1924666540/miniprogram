@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "SwiperOut 侧滑菜单",
+  "usingComponents": {
+    "w-swiper-out": "/dist/w-swiper-out/index",
+    "w-pane": "/dist/w-pane/index"
+  }
+}

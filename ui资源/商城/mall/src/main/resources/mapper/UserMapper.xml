@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.backstage.mapper.UserMapper">
+
+    <!--根据手机号登录-->
+    <select id="login" resultType="com.scoprion.mall.domain.MallUser">
+        SELECT id,name,
+        head_picture,
+        nick_name,
+        sex,
+        age,
+        certificate_id,
+        mobile,
+        address,
+        city,
+        email,
+        born_date,
+        certification,
+        status,
+        create_date,
+        update_date,
+        last_login_date,
+        id_photo_front_url,
+        id_photo_bg_url,
+        user_type,
+        login_ip
+        FROM t_user WHERE status='NORMAL' AND mobile=#{mobile} AND password=#{password}
+    </select>
+
+
+    <!--根据email登录-->
+    <select id="loginByEmail" resultType="com.scoprion.mall.domain.MallUser">
+        SELECT id,name,
+        head_picture,
+        nick_name,
+        sex,
+        age,
+        certification_id,
+        mobile,
+        address,
+        city,
+        email,
+        born_date,
+        certification,
+        status,
+        create_date,
+        update_date,
+        last_login_date,
+        login_ip
+        FROM t_user WHERE status='NORMAL' AND email=#{email} AND password=#{password}
+    </select>
+
+    <!--根据手机号查询用户-->
+    <select id="findByMobile" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_user WHERE status='NORMAL' AND mobile=#{mobile}
+    </select>
+
+    <!--根据email查询用户-->
+    <select id="findByEmail" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_user WHERE status='NORMAL' AND email=#{email}
+    </select>
+
+    <!--根据昵称查询用户-->
+    <select id="findByNickName" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_user WHERE status='NORMAL' AND nick_name=#{nickName}
+    </select>
+
+    <!--用户注册-->
+    <insert id="register" parameterType="com.scoprion.mall.domain.MallUser">
+        INSERT INTO t_user(
+        name,
+        head_picture,
+        nick_name,
+        sex,
+        age,
+        certificate_id,
+        mobile,
+        address,
+        city,
+        email,
+        born_date,
+        certification,
+        status,
+        create_date,
+        update_date,
+        last_login_date,
+        login_ip,
+        password)
+        VALUES(
+        #{name},
+        #{headPic},
+        #{nickName},
+        #{sex},
+        #{age},
+        #{certificateId},
+        #{mobile},
+        #{address},
+        #{city},
+        #{email},
+        #{bornDate},
+        'IS_AUTH',
+        #{status},
+        NOW(),
+        NOW(),
+        NOW(),
+        #{loginIp},
+        #{password})
+    </insert>
+
+    <select id="findByPage" resultType="com.scoprion.mall.domain.MallUser">
+        SELECT
+        tuser.id,
+        tuser.name,
+        tuser.head_picture,
+        tuser.nick_name,
+        tuser.sex,
+        tuser.age,
+        tuser.certificate_id,
+        tuser.mobile,
+        tuser.address,
+        tuser.city,
+        tuser.email,
+        tuser.born_date,
+        tuser.certification,
+        tuser.status,
+        tuser.create_date,
+        tuser.update_date,
+        tuser.last_login_date,
+        tuser.login_ip,
+        tuser.user_type,
+        tuser.id_photo_front_url,
+        tuser.id_photo_bg_url,
+        troleuser.role_id as roleId
+        FROM t_user tuser
+        LEFT JOIN t_sys_user_role troleuser ON troleuser.user_id=tuser.id
+        WHERE 1=1
+        <if test="userType!=null">AND user_type=#{userType}</if>
+        <if test="certification!=null">AND certification=#{certification}</if>
+        <if test="searchKey!=null">
+            AND CONCAT_WS('',tuser.name,tuser.nick_name,tuser.mobile)LIKE #{searchKey}
+        </if>
+        <if test="startDate!=null and endDate!=null">
+            AND tuser.create_date BETWEEN #{startDate} AND #{endDate}
+        </if>
+        <if test="startDate!=null and endDate==null">
+            AND tuser.create_date BETWEEN #{startDate} AND NOW()
+        </if>
+        <if test="endDate!=null and startDate==null">
+            AND tuser.create_date BETWEEN '1970-01-01' AND #{endDate}
+        </if>
+    </select>
+
+    <update id="modifyUserInfo" parameterType="com.scoprion.mall.domain.MallUser">
+        UPDATE t_user SET
+        <if test="name!=null">name=#{name},</if>
+        <if test="headPic!=null">head_picture=#{headPic},</if>
+        <if test="nickName!=null">nick_name=#{nickName},</if>
+        <if test="sex!=null">sex=#{sex},</if>
+        <if test="age!=null">age=#{age},</if>
+        <if test="certificateId!=null">certificate_id=#{certificateId},</if>
+        <if test="mobile!=null">mobile=#{mobile},</if>
+        <if test="address!=null">address=#{address},</if>
+        <if test="city!=null">city=#{city},</if>
+        <if test="email!=null">email=#{email},</if>
+        <if test="bornDate!=null">born_date=#{bornDate},</if>
+        <if test="certification!=null">certification=#{certification},</if>
+        <if test="status!=null">status=#{status},</if>
+        <if test="lastLoginDate!=null">last_login_date=#{lastLoginDate},</if>
+        <if test="loginIp!=null">login_ip=#{loginIp},</if>
+        <if test="password!=null">password=#{password},</if>
+        <if test="userType!=null">user_type=#{userType},</if>
+        <if test="idPhotoFrontUrl!=null">id_photo_front_url=#{idPhotoFrontUrl},</if>
+        <if test="idPhotoBgUrl!=null">id_photo_bg_url=#{idPhotoBgUrl},</if>
+        update_date=NOW()
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateLoginIpAddress">
+      UPDATE  t_user
+      SET login_ip=#{ip}
+      WHERE  id=#{id}
+    </update>
+
+    <select id="findById" resultType="com.scoprion.mall.domain.MallUser">
+        SELECT id,
+        name,
+        head_picture,
+        nick_name,
+        sex,
+        age,
+        certificate_id,
+        mobile,
+        address,
+        email,
+        certification,
+        born_date,
+        status,
+        city,
+        create_date,
+        update_date,
+        last_login_date,
+        login_ip,
+        password,
+        user_type,
+        id_photo_front_url,
+        id_photo_bg_url
+        FROM t_user WHERE id=#{id}
+    </select>
+
+    <select id="validAdmin" resultType="java.lang.Integer">
+        SELECT  COUNT(*) FROM  t_user  WHERE id=#{userId} AND user_type='USER_ADMIN'
+    </select>
+
+    <update id="auditSeller">
+        UPDATE t_user SET
+        certification=#{certification},
+        <if test="reason!=null and reason!=''">reason=#{reason},</if>
+        update_date=NOW()
+        WHERE id=#{sellerId}
+    </update>
+</mapper>

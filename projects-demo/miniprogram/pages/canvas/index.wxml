@@ -1,0 +1,4 @@
+<!--pages/canvas/index.wxml-->
+<view class="canvas-pege">
+	<canvas canvas-id='customCanvas'></canvas>
+</view>

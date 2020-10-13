@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.wx.mapper.WxDeliveryMapper">
+
+
+    <!--创建收货地址-->
+    <insert id="add" parameterType="com.scoprion.mall.domain.Delivery">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_delivery(user_id,
+        recipients,
+        phone,
+        province,
+        city,
+        area,
+        address,
+        post_code,
+        create_date,
+        update_date,
+        type,
+        default_address)
+        VALUES(#{userId},
+        #{recipients},
+        #{phone},
+        #{province},
+        #{city},
+        #{area},
+        #{address},
+        #{postCode},
+        NOW(),
+        NOW(),
+        #{type},
+        'DEFAULT_ADDRESS')
+    </insert>
+
+
+    <!--修改收货地址-->
+    <update id="updateDelivery" parameterType="com.scoprion.mall.domain.Delivery">
+        UPDATE t_delivery SET
+        <if test="recipients!=null">recipients=#{recipients},</if>
+        <if test="phone!=null">phone=#{phone},</if>
+        <if test="province!=null">province=#{province},</if>
+        <if test="city!=null">city=#{city},</if>
+        <if test="area!=null">area=#{area},</if>
+        <if test="address!=null">address=#{address},</if>
+        <if test="postCode!=null">post_code=#{postCode},</if>
+        <if test="type!=null">type=#{type},</if>
+        update_date=NOW()
+        WHERE id=#{id}
+    </update>
+
+    <!-- 默认收货地址 -->
+    <update id="updateDefaultAddress">
+        UPDATE t_delivery SET default_address='DEFAULT_ADDRESS' WHERE id=#{id}
+    </update>
+
+    <!--修改其他的地址为不默认地址-->
+    <update id="updateDefaultById">
+        UPDATE t_delivery SET default_address='UN_DEFAULT_ADDRESS' WHERE user_id=#{userId} AND id !=#{id}
+    </update>
+
+    <!--获取收货地址详情-->
+    <select id="findById" resultType="com.scoprion.mall.domain.Delivery">
+        SELECT id,
+        user_id,
+        recipients,
+        phone,
+        province,
+        city,
+        area,
+        address,
+        type,
+        post_code,
+        create_date,
+        update_date,
+        default_address
+        FROM t_delivery
+        WHERE id=#{id}
+    </select>
+
+    <!--获取默认地址-->
+    <select id="getDefault" resultType="com.scoprion.mall.domain.Delivery">
+        SELECT id,
+        user_id,
+        recipients,
+        phone,
+        province,
+        city,
+        area,
+        address,
+        post_code,
+        default_address
+        FROM t_delivery
+        WHERE user_id=#{userId} AND default_address='DEFAULT_ADDRESS'
+    </select>
+
+    <!--分页查询用户收货地址-->
+    <select id="listPage" resultType="com.scoprion.mall.domain.Delivery">
+        SELECT id,
+        user_id,
+        recipients,
+        phone,
+        province,
+        city,
+        area,
+        address,
+        post_code,
+        create_date,
+        update_date,
+        type,
+        default_address
+        FROM t_delivery
+        WHERE user_id=#{userId}
+    </select>
+
+    <!-- 删除收货地址 -->
+    <delete id="deleteDelivery">
+        DELETE FROM t_delivery WHERE id=#{id}
+    </delete>
+</mapper>

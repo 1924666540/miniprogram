@@ -1,0 +1,16 @@
+/* pages/w-toast/index.wxss */
+.test .tt {
+  color: red;
+}
+
+.wuss-class-round,
+.wuss-class-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f40;
+  position: relative;
+}
+w-badge {
+  margin-left: 30rpx;
+}

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoprion.mall.wx.mapper.WxActivityMapper">
+
+    <resultMap type="com.scoprion.mall.domain.ActivityGoods" id="activityResult" extends="goods">
+        <result property="id" column="id"/>
+        <result property="activityType" column="activityType"/>
+        <result property="name" column="name"/>
+        <result property="num" column="num"/>
+        <result property="activityId" column="activityId"/>
+        <result property="status" column="status"/>
+        <result property="actgId" column="actgId"/>
+        <result property="actgStock" column="actgStock"/>
+        <result property="createDate" column="createDate"/>
+        <result property="startDate" column="startDate"/>
+        <result property="endDate" column="endDate"/>
+    </resultMap>
+
+    <resultMap type="com.scoprion.mall.domain.good.Goods" id="goods">
+        <result property="id" column="id"/>
+        <result property="categoryId" column="categoryId"/>
+        <result property="goodName" column="goodName"/>
+        <result property="description" column="description"/>
+        <result property="promotion" column="promotion"/>
+        <result property="price" column="price"/>
+        <result property="saleVolume" column="saleVolume"/>
+        <result property="discount" column="discount"/>
+        <result property="stock" column="stock"/>
+        <result property="isOnSale" column="isOnSale"/>
+        <result property="isHot" column="isHot"/>
+        <result property="isNew" column="isNew"/>
+        <result property="lastUpdateDate" column="lastUpdateDate"/>
+        <result property="isFreight" column="isFreight"/>
+        <result property="brandId" column="brandId"/>
+        <result property="sellerId" column="sellerId"/>
+        <result property="visitTotal" column="visitTotal"/>
+        <result property="goodNo" column="goodNo"/>
+        <result property="mainImgUrl" column="mainImgUrl"/>
+        <result property="status" column="status"/>
+        <result property="freightFee" column="freightFee"/>
+    </resultMap>
+
+    <!-- 拼团列表 -->
+    <select id="groupList" resultMap="activityResult">
+        SELECT
+        act.name,
+        act.activity_type,
+        act.status AS actStatus,
+        act.num,
+        act.discount AS actDiscount,
+        actg.id,
+        actg.activity_id,
+        actg.good_id,
+        actg.create_date,
+        actg.stock AS actgStock,
+        tg.id AS tgId,
+        tg.category_id,
+        tg.good_name,
+        tg.description,
+        tg.promotion,
+        tg.price,
+        tg.sale_volume,
+        tg.stock,
+        tg.on_sale,
+        tg.hot,
+        tg.is_new,
+        tg.last_update_date,
+        tg.freight,
+        tg.brand_id,
+        tg.seller_id,
+        tg.visit_total,
+        tg.good_no,
+        tg.main_image_url,
+        tg.status,
+        if(start_date>now(),"已结束","已开始")
+        FROM t_activity act LEFT JOIN t_activity_good actg ON act.id = actg.activity_id
+        INNER JOIN t_good tg ON actg.good_id = tg.id
+        AND act.activity_type = #{activityType} AND actg.status='NORMAL' AND act.status='NORMAL'AND end_date>NOW()
+        AND NOW()>start_date
+    </select>
+
+    <!-- 查询试用商品列表 -->
+    <select id="findAll" resultMap="activityResult">
+        SELECT
+        act.name,
+        act.activity_type,
+        act.start_date,
+        act.status,
+        act.num,
+        actg.id AS activityGoodId,
+        actg.activity_id,
+        actg.good_id,
+        actg.create_date,
+        actg.stock AS actgStock,
+        tg.good_name,
+        tg.description,
+        tg.promotion,
+        tg.sale_volume,
+        actg.stock,
+        tg.stock AS tgStock,
+        tg.hot,
+        tg.is_new,
+        tg.freight,
+        tg.freight_fee,
+        tg.brand_id,
+        tg.seller_id,
+        tg.visit_total,
+        tg.good_no,
+        tg.main_image_url,
+        tg.status,
+        tg.rich_content
+        FROM t_activity act LEFT JOIN t_activity_good actg ON act.id = actg.activity_id
+        INNER JOIN t_good tg ON actg.good_id = tg.id
+        AND act.activity_type ='FREE' AND actg.status='NORMAL' AND act.status='NORMAL'AND end_date>NOW()
+        AND NOW()>start_date
+
+    </select>
+
+    <!-- 查询活动商品详情 -->
+    <select id="findByActivityGoodId" resultType="com.scoprion.mall.domain.ActivityGoods">
+        SELECT
+        id,
+        name,
+        activity_type,
+        status,
+        update_date,
+        create_date,
+        target,
+        num,
+        start_date,
+        end_date,
+        discount,
+        describes
+        FROM t_activity_good WHERE id=#{activityGoodId}
+    </select>
+
+    <!-- 查询是否参加过该活动 -->
+    <select id="validByActivityId" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_order WHERE order_type='4' AND userId=#{userId}
+    </select>
+
+
+    <!-- 查询拼团详情 -->
+    <select id="findById" resultType="com.scoprion.mall.domain.Activity">
+        SELECT
+        id,
+        name,
+        activity_type,
+        status,
+        update_date,
+        create_date,
+        target,
+        num,
+        start_date,
+        end_date,
+        discount,
+        describes
+        FROM t_activity WHERE id=#{activityId}
+    </select>
+
+    <!-- 获取商品详情 -->
+    <select id="findByGoodId" resultType="com.scoprion.mall.domain.good.Goods">
+        SELECT
+        id,
+        good_no,
+        category_id,
+        good_name,
+        description,
+        promotion,
+        price,
+        sale_volume,
+        discount,
+        stock,
+        on_sale,
+        hot,
+        is_new,
+        create_date,
+        last_update_date,
+        freight,
+        brand_id,
+        seller_id,
+        visit_total,
+        main_image_url,
+        rich_content,
+        status
+        FROM t_good WHERE id=#{goodId}
+    </select>
+
+    <!--判断活动商品库存-->
+    <select id="findByActivityGoodStock" resultType="com.scoprion.mall.domain.ActivityGoods">
+        SELECT
+        id,
+        activity_id,
+        good_id,
+        create_date,
+        stock,
+        STATUS,
+        update_date
+        FROM t_activity_good WHERE good_id=#{goodId}
+    </select>
+
+    <!-- 查询活动商品库存详情 -->
+    <select id="findByActivityIdAndGoodId" resultType="com.scoprion.mall.domain.ActivityGoods">
+        SELECT
+        id,
+        activity_id,
+        good_id,
+        create_date,
+        stock,
+        update_date
+        FROM t_activity_good WHERE activity_id=#{activityId} AND good_id=#{goodId}
+    </select>
+
+</mapper>

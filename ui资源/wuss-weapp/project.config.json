@@ -1,0 +1,337 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": [
+			{
+				"type": "folder",
+				"value": "node_modules"
+			},
+			{
+				"type": "folder",
+				"value": "docs"
+			}
+		]
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.6",
+	"appid": "wx292f06efc9682585",
+	"projectname": "wuss-weapp",
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 43,
+			"list": [
+				{
+					"id": -1,
+					"name": "w-popup",
+					"pathName": "pages/w-popup/index",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "w-toast",
+					"pathName": "pages/w-toast/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-button",
+					"pathName": "pages/w-button/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-avatar",
+					"pathName": "pages/w-avatar/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-cell",
+					"pathName": "pages/w-cell/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-tabs",
+					"pathName": "pages/w-tabs/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-steps",
+					"pathName": "pages/w-steps/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-dialog",
+					"pathName": "pages/w-dialog/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-alert",
+					"pathName": "pages/w-alert/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-swiper-out",
+					"pathName": "pages/w-swiper-out/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-action-sheet",
+					"pathName": "pages/w-action-sheet/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-switch",
+					"pathName": "pages/w-switch/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-input",
+					"pathName": "pages/w-input/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-radio",
+					"pathName": "pages/w-radio/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-checkbox",
+					"pathName": "pages/w-checkbox/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-picker",
+					"pathName": "pages/w-picker/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-form",
+					"pathName": "pages/w-form/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-address",
+					"pathName": "pages/w-address/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-popup-picker",
+					"pathName": "pages/w-popup-picker/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tag",
+					"pathName": "pages/w-tag/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-qr-code",
+					"pathName": "pages/w-qr-code/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-icon",
+					"pathName": "pages/w-icon/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-drop-menu",
+					"pathName": "pages/w-drop-menu/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-calendar",
+					"pathName": "pages/w-calendar/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-accordion",
+					"pathName": "pages/w-accordion/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-number",
+					"pathName": "pages/w-number/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-marquee",
+					"pathName": "pages/w-marquee/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-loading",
+					"pathName": "pages/w-loading/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-confirm",
+					"pathName": "pages/w-confirm/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-cell-picker",
+					"pathName": "pages/w-cell-picker/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-count-up",
+					"pathName": "pages/w-count-up/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-address-picker",
+					"pathName": "pages/w-address-picker/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-activity-indicator",
+					"pathName": "pages/w-activity-indicator/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-pull-to-refresh",
+					"pathName": "pages/w-pull-to-refresh/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-rater",
+					"pathName": "pages/w-rater/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-card",
+					"pathName": "pages/w-card/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-segmented-control",
+					"pathName": "pages/w-segmented-control/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-layout",
+					"pathName": "pages/w-layout/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-scrollable-tab-view",
+					"pathName": "pages/w-scrollable-tab-view/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-vcode",
+					"pathName": "pages/w-vcode/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "scrollable-tab-view-page-a",
+					"pathName": "pages/w-scrollable-tab-view/example1",
+					"query": "pages/w-scrollable-tab-view/example1",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "w-badge",
+					"pathName": "pages/w-badge/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-date-picker",
+					"pathName": "pages/w-date-picker/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "w-count-down",
+					"pathName": "pages/w-countdown/index",
+					"scene": null
+				}
+			]
+		}
+	}
+}

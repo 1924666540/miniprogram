@@ -1,0 +1,4 @@
+/* pages/storage/index.wxss */
+.storage{
+  padding: 15px;
+}

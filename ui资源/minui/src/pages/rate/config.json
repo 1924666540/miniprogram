@@ -1,0 +1,40 @@
+{
+  "demos": [
+    {
+      "id": "default",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_4eck9e2fb089dgelgbeii713fdj3a_294x62.png"
+      ]
+    },
+    {
+      "id": "value",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_3dbg28hii65c0ce65bccgj1eh76bh_280x70.png"
+      ]
+    },
+    {
+      "id": "count",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_3afi7ljb3i42337hahc31ia11aaa0_380x60.png"
+      ]
+    },
+    {
+      "id": "color",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_512dcf0i6j0gje36kck1ieehc2e9e_288x54.png"
+      ]
+    },
+    {
+      "id": "size",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_0gig64h5eb2kdl0h8eea7h38kc4dj_190x44.png"
+      ]
+    },
+    {
+      "id": "readonly",
+      "images": [
+        "https://s10.mogucdn.com/mlcdn/c45406/180509_1lcjjc5jab138lkk241l1ce386f59_292x60.png"
+      ]
+    }
+  ]
+}

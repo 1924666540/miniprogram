@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/scrollableTabView/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2d80ff",
+    "navigationBarTitleText": "scrollableTabView",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "my-player": "plugin://myPlugin/player"
+  }
+}

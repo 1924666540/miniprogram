@@ -1,0 +1,61 @@
+/*
+ * @Author: Github.Caitingwei[https://github.com/Caitingwei] 
+ * @Date: 2018-08-29 17:12:34 
+ * @Last Modified by: Github.Caitingwei[https://github.com/Caitingwei]
+ * @Last Modified time: 2018-09-18 17:54:30
+ */
+page,.wuss-weapp-example  {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+}
+
+.header {
+  padding: 20px 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  /* display: none; */
+  /* background-color: #eeeeee; */
+}
+
+.title {
+  padding: 15px;
+  font-size: 44px;
+  background-image: linear-gradient(92deg, rgba(255, 102, 0,1), rgba(255, 153, 51,1),rgba(204, 0, 51,1));
+  background-image: -webkit-linear-gradient(92deg,  rgba(255, 102, 0,1), rgba(255, 153, 51,1),rgba(204, 0, 51,1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: filter-hue 10s infinite linear;
+}
+
+@-webkit-keyframes filter-hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+
+.example-content {
+  
+}
+
+.w-cell {
+
+}
+
+.w-pane {
+  margin: 15px!important;
+}

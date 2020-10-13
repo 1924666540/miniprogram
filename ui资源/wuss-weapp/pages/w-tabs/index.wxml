@@ -1,0 +1,55 @@
+<w-pane title="Tabs" desc="导航切换栏" />
+
+<w-pane desc="Default" />
+<w-tabs bind:onChange="handleChange" options="{{ tabs1 }}" />
+
+<w-pane desc="Initial Index = 2" />
+<w-button type="info">selected tab2</w-button>
+<w-tabs
+ bind:onChange="handleChange"
+ options="{{ tabs4 }}"
+ currentIndex="{{ index }}"
+/>
+
+<w-pane desc="Line Size = 1" />
+<w-tabs lineSize="1" options="{{ tabs1 }}" />
+
+<w-pane desc="Active Color" />
+<w-tabs
+ lineSize="1"
+ activeColor="#ff8800"
+ options="{{ tabs3 }}"
+/>
+
+<w-pane desc="Icon" />
+<w-tabs
+ textStyles="font-size: 14px;"
+ options="{{ tabs2 }}"
+ activeColor="#ef473a"
+/>
+
+<w-pane desc="Disabled Transition and DisabledItem" />
+<w-tabs
+ transition="{{ false }}"
+ options="{{ tabs4 }}"
+ bind:disabled="onDisabled"
+/>
+
+<w-pane desc="Scroll" />
+<w-tabs options="{{ tabs5 }}" />
+
+<w-pane desc="Disabled Line" />
+<w-tabs
+ transition="{{ false }}"
+ line="{{ false }}"
+ options="{{ tabs4 }}"
+/>
+
+<w-pane desc="Disabled Border" />
+<w-tabs
+ transition="{{ false }}"
+ line="{{ false }}"
+ border="{{ false }}"
+ options="{{ tabs4 }}"
+/>
+

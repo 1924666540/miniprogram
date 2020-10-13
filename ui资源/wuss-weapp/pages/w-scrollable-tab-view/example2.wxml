@@ -1,0 +1,26 @@
+<w-scrollable-tab-view
+ bind:onChange="handleScrollableChange"
+ render-tab-bar="segmented-control"
+ options="{{ options }}"
+>
+	<scroll-view
+	 scroll-y
+	 wx:for="{{ options }}"
+	 wx:key="{{ index }}"
+	 class="w-scrollable-tab-view-container"
+	 slot="{{ item }}"
+	>
+		<w-cell-group>
+			<w-cell
+			 highlight
+			 wx:for="{{ 30 }}"
+			 wx:key="child"
+			 wx:for-index="child"
+			 wx:for-item="childItem"
+			 label="列表 {{ child+1 }}"
+			 content="你好，我是{{ item }}页面"
+			/>
+		</w-cell-group>
+	</scroll-view>
+</w-scrollable-tab-view>
+

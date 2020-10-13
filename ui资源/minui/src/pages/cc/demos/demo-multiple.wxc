@@ -1,0 +1,32 @@
+<template>
+  <wxc-cc class="demo">
+    <image class="demo__pic" src="https://s10.mogucdn.com/mlcdn/c45406/171115_7eaee6469k5l0e1728j7aige52e81_352x352.png" mode="aspectFit"></image>
+    <image class="demo__pic" src="https://s10.mogucdn.com/mlcdn/c45406/171109_871803cbeajedk3fabb59jl4idl1c_356x356.png" mode="aspectFit"></image>
+  </wxc-cc>
+</template>
+
+<script>
+export default {
+  config: {
+    usingComponents: {
+      'wxc-cc': '@minui/wxc-cc'
+    }
+  },
+  data: {},
+  methods: {}
+}
+</script>
+
+<style>
+  .demo {
+    display: block;
+    width: 100%;
+    height: 400rpx;
+    background: #f2f2f2;
+  }
+  .demo__pic {
+    width: 200rpx;
+    height: 200rpx;
+    margin: 15rpx;
+  }
+</style>

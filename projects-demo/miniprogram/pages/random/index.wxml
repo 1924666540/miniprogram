@@ -1,0 +1,19 @@
+<!--pages/random/index.wxml-->
+<view class="random">
+	<view class="weui-panel weui-panel_access">
+		<view class="weui-panel__hd" >生成六位随机数</view>
+		<view class="weui-panel__bd">
+			<view class="weui-media-box weui-media-box_text">
+				<block wx:if="{{randomArr.length>0}}">
+					<view class="weui-media-box__desc num-list">
+						<view class="num-item" wx:for="{{randomArr}}">{{item}}</view>
+					</view>
+				</block>
+				<view class="weui-media-box__desc num-list" wx:else>
+					<view class="num-item" wx:for="{{6}}">0</view>
+				</view>
+			</view>
+		</view>
+	</view>
+  <button type='primary' bindtap="getRandom">生成</button>
+</view>
